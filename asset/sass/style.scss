@@ -6,14 +6,14 @@
 }
 
 :root{
-    --div: rgba(236, 198, 72, 0.918); 
+    --div: rgba(45, 233, 101, 0.918);
     --background: rgb(50, 50, 50);
-    --hover: rgb(85, 75, 55);
+    --hover: rgb(26, 97, 47);
     --shadow: rgb(12, 15, 51);
     --ul: rgb(76, 74, 71);
     --container: rgba(6, 51, 77, 0.534);
     /* This is a new thing I wanted to practise*/
-    --borderUX: 5px double var(--div); 
+    --borderUX: 5px double var(--div);
 }
 
 body{
@@ -62,7 +62,7 @@ body{
             width: 30%;
             height: 20%;
             display: grid;
-            grid-template-areas: 
+            grid-template-areas:
             "p     p"
             "yes not";
             gap: 20px;
@@ -70,7 +70,7 @@ body{
             border-radius: 8px;
             min-width: 300px;
             box-shadow: 1px 1px 15px 5px var(--shadow);
-            button {
+            button{
                 height: 80%;
                 width: 50%;
                 margin: auto;
@@ -149,14 +149,29 @@ body{
                         display: flex;
                         border-radius: 8px;
                         height: 60px;
-                        border: none;
+                        border: 2px solid var(--div);
                         width: 80%;
                         padding: 10px;
                         font-size: x-large;
+                        background-color: var(--hover);
+                        outline: none;
                     }
                     input[type="submit"]{
                         width: 10%;
                         cursor: pointer;
+                        border: none;
+                        transition: ease-in-out 0.1s;
+                        &:hover{
+                            transform: scale(1.05);
+                            background-color: var(--div);
+                        }
+                        &:active{
+                            transform: scale(1.0);
+                            background-color: var(--hover);
+                        }
+                    }
+                    input[type="text"]:hover{
+                        outline: 6px double var(--div);
                     }
                 }
             }
