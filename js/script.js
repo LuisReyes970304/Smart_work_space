@@ -35,7 +35,7 @@ function createNote(notes, data) {
 
 notes.addEventListener("click", async (e) => {
     if (e.target.classList.contains("deleteNote")) {
-        const liNote = e.target.parentElement;
+        const liNote = e.target.parentNode;
         const confirmed = await mes.confirmPopUp();
         if(confirmed){
             notes.removeChild(liNote);
