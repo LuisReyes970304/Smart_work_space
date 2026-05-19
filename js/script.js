@@ -6,6 +6,13 @@ const formNote = document.querySelector("form");
 const inputNote = formNote.querySelector(".input");
 const notes = document.querySelector(".listNotes");
 
+//botones filtro
+const all = document.getElementById("btnAll");
+const toDo = document.getElementById("btntoDo");
+const completed = document.getElementById("btnCompleted");
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
     notes.innerHTML = localStorage.getItem("data") || "";
 });
