@@ -215,4 +215,8 @@ body {
   body main .list ul {
     grid-template-columns: repeat(3, 1fr); } }
 
+.hidden {
+    display: none !important;
+}
+
 /*# sourceMappingURL=style.css.map */

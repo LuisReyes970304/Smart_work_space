@@ -16,6 +16,10 @@
     --borderUX: 5px double var(--div);
 }
 
+.hidden {
+    display: none !important;
+}
+
 body{
     width: 100vw;
     height: 100vh;
