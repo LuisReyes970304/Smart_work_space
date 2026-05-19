@@ -28,6 +28,10 @@ function createNote(notes, data) {
     <li class="liNote">
         <button class="deleteNote">x</button>
         <p>${data}</p>
+        <label class="state">
+            <input type="checkbox" class="taskStatus">
+            <span class="status">To complete</span>
+        </label>
     </li>
     `
     localStorage.setItem("data", notes.innerHTML);
@@ -41,6 +45,20 @@ notes.addEventListener("click", async (e) => {
             notes.removeChild(liNote);
             localStorage.setItem("data", notes.innerHTML);
             console.log("Note deleted from DOM and LocalStorage");
+        }
+    }
+});
+
+notes.addEventListener("change", (e) => {
+    if (e.target.classList.contains("taskStatus")) {
+        const status = e.target.nextElementSibling;
+        if (status) {
+            if (e.target.checked) {
+                status.textContent = "Completed";
+            } else {
+                status.textContent = "To complete";
+            }
+            localStorage.setItem("data", notes.innerHTML);
         }
     }
 });
