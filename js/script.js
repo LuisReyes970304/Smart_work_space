@@ -6,12 +6,10 @@ const formNote = document.querySelector("form");
 const inputNote = formNote.querySelector(".input");
 const notes = document.querySelector(".listNotes");
 
-//botones filtro
-const all = document.getElementById("btnAll");
-const toDo = document.getElementById("btntoDo");
-const completed = document.getElementById("btnCompleted");
-
-
+// Selectores para los botones de filtro
+const btnAll = document.getElementById("btnAll");
+const btntoDo = document.getElementById("btntoDo");
+const btnCompleted = document.getElementById("btnCompleted");
 
 document.addEventListener("DOMContentLoaded", () => {
     notes.innerHTML = localStorage.getItem("data") || "";
@@ -37,7 +35,7 @@ function createNote(notes, data) {
         <p>${data}</p>
         <label class="state">
             <input type="checkbox" class="taskStatus">
-            <span class="status">To complete</span>
+            <span class="status" style="color: rgb(213, 23, 2)">To complete</span>
         </label>
     </li>
     `
@@ -62,12 +60,52 @@ notes.addEventListener("change", (e) => {
         if (status) {
             if (e.target.checked) {
                 status.textContent = "Completed";
+                status.style.color = "rgb(0, 98, 28)";
+                // Guardamos el atributo checked en el HTML de forma explícita
+                e.target.setAttribute("checked", "checked"); 
             } else {
                 status.textContent = "To complete";
+                status.style.color = "rgb(213, 23, 2)";
+                // Eliminamos el atributo si se desmarca
+                e.target.removeAttribute("checked");
             }
             localStorage.setItem("data", notes.innerHTML);
         }
     }
 });
 
+// --- LÓGICA DEL FILTRO ---
 
+// Función genérica para aplicar el filtro
+function filterNotes(filterType) {
+    const allNotes = notes.querySelectorAll(".liNote");
+
+    allNotes.forEach(note => {
+        const checkbox = note.querySelector(".taskStatus");
+        
+        switch (filterType) {
+            case "all":
+                note.classList.remove("hidden");
+                break;
+            case "todo":
+                if (!checkbox.checked) {
+                    note.classList.remove("hidden");
+                } else {
+                    note.classList.add("hidden");
+                }
+                break;
+            case "completed":
+                if (checkbox.checked) {
+                    note.classList.remove("hidden");
+                } else {
+                    note.classList.add("hidden");
+                }
+                break;
+        }
+    });
+}
+
+// Eventos para los botones de filtro
+btnAll.addEventListener("click", () => filterNotes("all"));
+btntoDo.addEventListener("click", () => filterNotes("todo"));
+btnCompleted.addEventListener("click", () => filterNotes("completed"));
