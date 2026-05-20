@@ -182,7 +182,7 @@ body main .entry fieldset form input {
   display: flex;
   border-radius: 8px;
   height: 60px;
-  border: 2px solid var(--div);
+  border: none;
   width: 80%;
   padding: 10px;
   font-size: x-large;
@@ -207,7 +207,7 @@ body main .entry fieldset form input[type=submit]:active {
   background-color: var(--hover);
 }
 body main .entry fieldset form input[type=text]:hover {
-  outline: 6px double var(--div);
+  outline: 2px solid var(--div);
 }
 body main .list {
   height: 60%;
