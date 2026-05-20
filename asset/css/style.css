@@ -271,6 +271,7 @@ body main .list ul li button:hover {
 }
 body main .list ul li p {
   text-align: center;
+  height: 80%;
 }
 
 @media (max-width: 1000px) {

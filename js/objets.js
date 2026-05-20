@@ -3,7 +3,7 @@ class Messages {
         this.container = document.querySelector(".container");
         this.message = document.querySelector(".message");
         this.yesBtn = document.querySelector(".yes");
-        this.notBtn = document.querySelector(".not");
+        this.notBtn = document.querySelector(".non");
         this.loadingArrow = document.querySelector(".deleting");
     }
 
