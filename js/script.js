@@ -4,16 +4,13 @@ const mes = new Messages();
 
 const formNote = document.querySelector("form");
 const inputNote = formNote.querySelector(".input");
+const noteName = formNote.querySelector(".tName");
 const notes = document.querySelector(".listNotes");
 
 
 const btnAll = document.getElementById("btnAll");
 const btntoDo = document.getElementById("btntoDo");
 const btnCompleted = document.getElementById("btnCompleted");
-
-function saveNotes() {
-    localStorage.setItem("notes", notes.innerHTML);
-}
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -23,12 +20,18 @@ document.addEventListener("DOMContentLoaded", () => {
     applyFilter(currentFilter);
 });
 
+function saveNotes() {
+    localStorage.setItem("notes", notes.innerHTML);
+}
+
 formNote.addEventListener("submit", (e) => {
     e.preventDefault();
     let data = inputNote.value.trim();
+    let name = noteName.value.trim();
     inputNote.value = "";
+    noteName.value = "";
     if(data != "") {
-        createNote(notes, data);
+        createNote(notes, data, name);
         console.log("New note added");
     } else { 
         console.error("Cannot create an Empty note");
@@ -36,14 +39,15 @@ formNote.addEventListener("submit", (e) => {
     }
 });
 
-function createNote(notes, data) {
+function createNote(notes, data, name) {
     notes.innerHTML += `
     <li class="liNote">
         <button class="deleteNote">x</button>
+        <h4 class="pLiNote">${name}</h4>
         <p class="pLiNote">${data}</p>
         <label class="state">
             <input type="checkbox" class="taskStatus">
-            <span class="status" style="color: rgb(213, 23, 2)">To complete</span>
+            <span class="status" style="color: rgb(213, 23, 2)">To do</span>
         </label>
     </li>
     `
@@ -71,7 +75,7 @@ notes.addEventListener("change", (e) => {
                 status.style.color = "rgb(0, 98, 28)";
                 e.target.setAttribute("checked", "checked"); 
             } else {
-                status.textContent = "To complete";
+                status.textContent = "To do";
                 status.style.color = "rgb(213, 23, 2)";
 
                 e.target.removeAttribute("checked");

@@ -12,6 +12,7 @@
   --shadow: rgb(12, 15, 51);
   --ul: rgb(76, 74, 71);
   --container: rgba(6, 51, 77, 0.534);
+  --placeholder: rgba(104, 182, 127, 0.459);
   /* This is a new thing I wanted to practise*/
   --borderUX: 5px double var(--div);
 }
@@ -174,6 +175,7 @@ body main .entry fieldset form {
   width: 100%;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   gap: 10px;
 }
 body main .entry fieldset form input {
@@ -186,6 +188,9 @@ body main .entry fieldset form input {
   font-size: x-large;
   background-color: var(--hover);
   outline: none;
+}
+body main .entry fieldset form input::placeholder {
+  color: var(--placeholder);
 }
 body main .entry fieldset form input[type=submit] {
   width: 10%;

@@ -12,6 +12,7 @@
     --shadow: rgb(12, 15, 51);
     --ul: rgb(76, 74, 71);
     --container: rgba(6, 51, 77, 0.534);
+    --placeholder: rgba(104, 182, 127, 0.459);
     /* This is a new thing I wanted to practise*/
     --borderUX: 5px double var(--div);
 }
@@ -173,6 +174,7 @@ body{
                     width: 100%;
                     align-items: center;
                     justify-content: center;
+                    flex-direction: column;
                     gap: 10px;
                     input{
                         display: flex;
@@ -184,6 +186,9 @@ body{
                         font-size: x-large;
                         background-color: var(--hover);
                         outline: none;
+                        &::placeholder{
+                            color: var(--placeholder)
+                        }
                     }
                     input[type="submit"]{
                         width: 10%;
