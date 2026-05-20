@@ -13,6 +13,7 @@ const btnCompleted = document.getElementById("btnCompleted");
 
 document.addEventListener("DOMContentLoaded", () => {
     notes.innerHTML = localStorage.getItem("data") || "";
+    notes.innerHTML = sessionStorage.getItem("data") || "";
 });
 
 formNote.addEventListener("submit", (e) => {
@@ -100,6 +101,7 @@ function filterNotes(filterType) {
                 }
                 break;
         }
+        sessionStorage.setItem("data", notes.innerHTML);
     });
 }
 
