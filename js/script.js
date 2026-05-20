@@ -47,7 +47,7 @@ function createNote(notes, data) {
         </label>
     </li>
     `
-   saveNotes();
+    saveNotes();
 };
 
 notes.addEventListener("click", async (e) => {
@@ -76,7 +76,7 @@ notes.addEventListener("change", (e) => {
 
                 e.target.removeAttribute("checked");
             }
-           saveNotes();
+        saveNotes();
         }
     }
 });

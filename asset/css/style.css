@@ -270,7 +270,6 @@ body main .list ul li button:hover {
   background-color: var(--hover);
 }
 body main .list ul li p {
-  text-align: center;
   height: 80%;
 }
 
