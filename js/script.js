@@ -6,7 +6,7 @@ const formNote = document.querySelector("form");
 const inputNote = formNote.querySelector(".input");
 const notes = document.querySelector(".listNotes");
 
-// Selectores para los botones de filtro
+
 const btnAll = document.getElementById("btnAll");
 const btntoDo = document.getElementById("btntoDo");
 const btnCompleted = document.getElementById("btnCompleted");
@@ -61,12 +61,12 @@ notes.addEventListener("change", (e) => {
             if (e.target.checked) {
                 status.textContent = "Completed";
                 status.style.color = "rgb(0, 98, 28)";
-                // Guardamos el atributo checked en el HTML de forma explícita
+              
                 e.target.setAttribute("checked", "checked"); 
             } else {
                 status.textContent = "To complete";
                 status.style.color = "rgb(213, 23, 2)";
-                // Eliminamos el atributo si se desmarca
+
                 e.target.removeAttribute("checked");
             }
             localStorage.setItem("data", notes.innerHTML);
@@ -74,9 +74,7 @@ notes.addEventListener("change", (e) => {
     }
 });
 
-// --- LÓGICA DEL FILTRO ---
 
-// Función genérica para aplicar el filtro
 function filterNotes(filterType) {
     const allNotes = notes.querySelectorAll(".liNote");
 
@@ -105,7 +103,7 @@ function filterNotes(filterType) {
     });
 }
 
-// Eventos para los botones de filtro
+
 btnAll.addEventListener("click", () => filterNotes("all"));
 btntoDo.addEventListener("click", () => filterNotes("todo"));
 btnCompleted.addEventListener("click", () => filterNotes("completed"));
