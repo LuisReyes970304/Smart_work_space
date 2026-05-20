@@ -11,8 +11,16 @@ const btnAll = document.getElementById("btnAll");
 const btntoDo = document.getElementById("btntoDo");
 const btnCompleted = document.getElementById("btnCompleted");
 
+function saveNotes() {
+    localStorage.setItem("notes", notes.innerHTML);
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
-    notes.innerHTML = localStorage.getItem("data") || "";
+    notes.innerHTML = localStorage.getItem("notes") || "";
+
+    const currentFilter = sessionStorage.getItem("filter") || "all";
+    applyFilter(currentFilter);
 });
 
 formNote.addEventListener("submit", (e) => {
@@ -39,7 +47,7 @@ function createNote(notes, data) {
         </label>
     </li>
     `
-    localStorage.setItem("data", notes.innerHTML);
+   saveNotes();
 };
 
 notes.addEventListener("click", async (e) => {
@@ -48,7 +56,7 @@ notes.addEventListener("click", async (e) => {
         const confirmed = await mes.confirmPopUp();
         if(confirmed){
             notes.removeChild(liNote);
-            localStorage.setItem("data", notes.innerHTML);
+            saveNotes();
             console.log("Note deleted from DOM and LocalStorage");
         }
     }
@@ -68,38 +76,31 @@ notes.addEventListener("change", (e) => {
 
                 e.target.removeAttribute("checked");
             }
-            localStorage.setItem("data", notes.innerHTML);
+           saveNotes();
         }
     }
 });
 
 
-function filterNotes(filterType) {
-    const allNotes = notes.querySelectorAll(".liNote");
+function applyFilter(filter) {
+    const allNotes = document.querySelectorAll(".liNote");
 
     allNotes.forEach(note => {
         const checkbox = note.querySelector(".taskStatus");
-        
-        switch (filterType) {
+
+        switch(filter) {
             case "all":
-                note.classList.remove("hidden");
+                note.style.display = "flex";
                 break;
+
             case "todo":
-                if (!checkbox.checked) {
-                    note.classList.remove("hidden");
-                } else {
-                    note.classList.add("hidden");
-                }
+                note.style.display = checkbox.checked ? "none" : "flex";
                 break;
+
             case "completed":
-                if (checkbox.checked) {
-                    note.classList.remove("hidden");
-                } else {
-                    note.classList.add("hidden");
-                }
+                note.style.display = checkbox.checked ? "flex" : "none";
                 break;
         }
-        sessionStorage.setItem("data", notes.innerHTML);
     });
 }
 
@@ -111,12 +112,23 @@ notes.addEventListener("dblclick", (e) => {
             if(e.key === "Enter"){
                 e.preventDefault();
                 pLiNote.contentEditable = "false";
-                localStorage.setItem("data", notes.innerHTML);
+                saveNotes();
             }
         })
     }
 })
 
-btnAll.addEventListener("click", () => filterNotes("all"));
-btntoDo.addEventListener("click", () => filterNotes("todo"));
-btnCompleted.addEventListener("click", () => filterNotes("completed"));
+btnAll.addEventListener("click", () => {
+    sessionStorage.setItem("filter", "all");
+    applyFilter("all");
+});
+
+btntoDo.addEventListener("click", () => {
+    sessionStorage.setItem("filter", "todo");
+    applyFilter("todo");
+});
+
+btnCompleted.addEventListener("click", () => {
+    sessionStorage.setItem("filter", "completed");
+    applyFilter("completed");
+});
