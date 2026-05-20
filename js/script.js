@@ -13,7 +13,6 @@ const btnCompleted = document.getElementById("btnCompleted");
 
 document.addEventListener("DOMContentLoaded", () => {
     notes.innerHTML = localStorage.getItem("data") || "";
-    notes.innerHTML = sessionStorage.getItem("data") || "";
 });
 
 formNote.addEventListener("submit", (e) => {
@@ -33,7 +32,7 @@ function createNote(notes, data) {
     notes.innerHTML += `
     <li class="liNote">
         <button class="deleteNote">x</button>
-        <p>${data}</p>
+        <p class="pLiNote">${data}</p>
         <label class="state">
             <input type="checkbox" class="taskStatus">
             <span class="status" style="color: rgb(213, 23, 2)">To complete</span>
@@ -62,7 +61,6 @@ notes.addEventListener("change", (e) => {
             if (e.target.checked) {
                 status.textContent = "Completed";
                 status.style.color = "rgb(0, 98, 28)";
-              
                 e.target.setAttribute("checked", "checked"); 
             } else {
                 status.textContent = "To complete";
@@ -105,6 +103,19 @@ function filterNotes(filterType) {
     });
 }
 
+notes.addEventListener("dblclick", (e) => {
+    if(e.target.classList.contains("pLiNote")){
+        const pLiNote = e.target;
+        pLiNote.contentEditable = "true";
+        pLiNote.addEventListener("keydown", (e) => {
+            if(e.key === "Enter"){
+                e.preventDefault();
+                pLiNote.contentEditable = "false";
+                localStorage.setItem("data", notes.innerHTML);
+            }
+        })
+    }
+})
 
 btnAll.addEventListener("click", () => filterNotes("all"));
 btntoDo.addEventListener("click", () => filterNotes("todo"));
