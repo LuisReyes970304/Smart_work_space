@@ -272,8 +272,13 @@ body{
                             background-color: var(--hover);
                         }
                     }
+                    h4{
+                        text-align: center;
+                        font-size: x-large;
+                    }
                     p{
-                        height: 80%;
+                        height: 70%;
+                        text-align: center;
                     }
                 }
             }
