@@ -34,7 +34,8 @@ formNote.addEventListener("submit", (e) => {
         createNote(notes, data, name);
         console.log("New note added");
     } else { 
-        console.error("Cannot create an Empty note");
+        inputNote.style.border = "2px solid rgb(161, 23, 23)";
+        noteName.style.border = "2px solid rgb(161, 23, 23)";
         return;
     }
 });
