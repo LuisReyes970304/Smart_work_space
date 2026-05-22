@@ -207,6 +207,11 @@ body{
                     input[type="text"]:hover{
                         outline: 2px solid var(--div);
                     }
+                    p{
+                        span{
+                            font-weight: 800;
+                        }
+                    }
                 }
             }
         }

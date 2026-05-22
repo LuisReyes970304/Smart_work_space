@@ -6,6 +6,7 @@ const formNote = document.querySelector("form");
 const inputNote = formNote.querySelector(".input");
 const noteName = formNote.querySelector(".tName");
 const notes = document.querySelector(".listNotes");
+const alertNote = formNote.querySelector(".alertNote");
 
 
 const btnAll = document.getElementById("btnAll");
@@ -30,12 +31,15 @@ formNote.addEventListener("submit", (e) => {
     let name = noteName.value.trim();
     inputNote.value = "";
     noteName.value = "";
-    if(data != "") {
+    if(data != "" && name != "") {
+        inputNote.style.border = "none";
+        noteName.style.border = "none";
+        alertNote.innerHTML = "";
         createNote(notes, data, name);
-        console.log("New note added");
     } else { 
-        inputNote.style.border = "2px solid rgb(161, 23, 23)";
-        noteName.style.border = "2px solid rgb(161, 23, 23)";
+        inputNote.style.border = "2px solid rgb(230, 70, 70)";
+        noteName.style.border = "2px solid rgb(230, 70, 70)";
+        alertNote.innerHTML = `<span style="color: rgb(234, 55, 11); font-size: larger;">All filds are required</span>`
         return;
     }
 });
